@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拼图游戏</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .father{
+            width: 522px;
+            height: 522px;
+            margin: 0 100px;
+            border: 1px solid gray;
+            margin-top: 5px;
+            float: left;
+            /*background: url("images/jigsaw_r2_c2.jpg") 0 0 no-repeat;*/
+        }
+        .small{
+            width: 100px;
+            height: 100px;
+            float: left;
+            border: 1px solid gray;
+            margin-left: 2px;
+            margin-top: 2px;
+        }
+        .original{
+            width: 200px;
+            height: 200px;
+            margin-left: 50px;
+            margin-top: 50px;
+            float: left;
+        }
+        img{
+            width: 300px;
+            height: 300px;
+        }
+        .cut{
+            width: 100px;
+            height: 100px;
+            background: url("images/jigsaw_r2_c2.jpg") 0 0 no-repeat;
+            float: left;
+            margin-left: 150px;
+            margin-top: 50px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="father" id="father">
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+    </div>
+    <div class="cut" id="cut"></div>
+<div class="original">
+    <img src="images/jigsaw_r2_c2.jpg" alt=""/>
+</div>
+<script>
+    var cut = document.getElementById("cut");
+    var father = document.getElementById("father");
+    var boxs = father.getElementsByTagName("div");
+    for(var i = 0; i < boxs.length; i++){
+        boxs[i].index = i;
+        boxs[i].onclick = function(event){
+            var event = event || window.event;
+            var x = this.offsetLeft;
+            var y = this.offsetTop;
+            console.log(x +  "/" + y);
+        }
+    }
+
+    cut.onclick = function(){
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            background: url("images/1.jpg") no-repeat 0 0;
+
+        }
+        .center{
+            margin:20px auto;
+            overflow: hidden;
+            width: 300px;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+            float: left;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="center">
+    <img src="images/1.jpg" alt="" id="one"/>
+    <img src="images/2.jpg" alt="" id="two"/>
+    <img src="images/3.jpg" alt="" id="three"/>
+</div>
+<script>
+    var imgs = document.getElementsByTagName("img");
+    for(var index = 0;index < imgs.length;index++){
+        imgs[index].onclick = function(){
+            document.body.style.backgroundImage = "url("+this.src+")";
+        }
+    }
+
+
+</script>
+</body>
+</html>

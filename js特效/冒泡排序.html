@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var arr = [3,12,5,4,78,45,37,68,100,2,34];
+    function sorting(arr){
+        var change;
+        for(var i = 0;i < arr.length; i++){
+            for(var j = i+1; j < arr.length; j++){
+                if(arr[i] > arr[j]){
+                    change = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = change;
+                }
+            }
+//            console.log(arr);
+        }
+        console.log(arr);
+    }
+    sorting(arr);
+</script>
+</body>
+</html>

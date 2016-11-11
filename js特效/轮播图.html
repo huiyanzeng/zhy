@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 490px;
+            height: 170px;
+            margin: 50px auto;
+            border: 1px solid black;
+            position: relative;
+            overflow: hidden;
+        }
+        /*左右切换样式定义*/
+        .box .change{
+            width: 490px;
+            height: 170px;
+            font-size: 30px;
+            font-family: "新宋";
+            line-height: 30px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            display:none;
+        }
+        .box .change span{
+            background-color: rgba(88, 88, 88, 0.7);
+            cursor: pointer;
+        }
+        .box .change .left{
+            float: left;
+            padding-left: 5px;
+            padding-right: 5px;
+            position: absolute;
+            left: 0;
+            top: 75px;
+        }
+        .box .change .right{
+            float: right;
+            padding-right: 5px;
+            padding-left: 5px;
+            position: absolute;
+            left: 465px;
+            top: 75px;
+        }
+
+
+        /*图片展示样式定义*/
+        ul li{
+            float: left;
+            list-style: none;
+        }
+        .box .img_box{
+            width: 2940px;
+            height: 170px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        /*小圆点样式定义*/
+        /*.box .dot{*/
+            /*width: 490px;*/
+            /*height: 170px;*/
+            /*position: relative;*/
+        /*}*/
+        .box .bot{
+            width: 128px;
+            height: 16px;
+            position: absolute;
+            left: 181px;
+            bottom: 5px;
+            z-index: 1;
+        }
+        .box .bot li{
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            background-color: rgba(101, 101, 101, 0.7);
+            margin-left: 8px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <!-- 左右切换-->
+    <div class="change" id="change">
+       <span class="left" id="left"><</span>
+       <span class="right" id="right">></span>
+    </div>
+    <!-- 圆点切换-->
+        <ul class="bot" id="dot">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    <!-- 图片展示-->
+    <ul class="img_box" id="img_box">
+        <li><img src="images/轮播图/01.jpg" alt=""/></li>
+        <li><img src="images/轮播图/02.jpg" alt=""/></li>
+        <li><img src="images/轮播图/03.jpg" alt=""/></li>
+        <li><img src="images/轮播图/04.jpg" alt=""/></li>
+        <li><img src="images/轮播图/05.jpg" alt=""/></li>
+        <li><img src="images/轮播图/01.jpg" alt=""/></li>
+    </ul>
+</div>
+<script>
+    var box = document.getElementById("box");
+    var change = document.getElementById("change");
+    var left = document.getElementById("left");
+    var right = document.getElementById("right");
+    var dot = document.getElementById("dot");
+    var dots = dot.getElementsByTagName("li");
+    var imgBox = document.getElementById("img_box");
+
+//    图片的自动滚动
+    var num = 0;
+    var timer1 = null;
+    var timer2 = null;
+//    控制图片的自动滚动
+    function autoPlay() {
+
+        num = num + 10;
+        imgBox.style.left = - num + "px";
+        if(num % 490 == 0){
+            stop();
+        }
+//        解决空白展示的问题
+        if(num >2450){
+            num = 0;
+        }
+    }
+//    控制图片切换之间的时间
+    function stop(){
+        clearInterval(timer1);
+        timer2 = setTimeout(function(){
+            clearTimeout(timer2);
+//            圆点样式复原
+            for(var i = 0; i　< dots.length; i++){
+                dots[i].style.backgroundColor = "rgba(101, 101, 101, 0.7)";
+            }
+            timer1 = setInterval(autoPlay,10);
+        },2000);
+    }
+//  打开网页自动启动轮播图
+    timer2 = setTimeout(function(){
+        clearTimeout(timer2);
+        timer1 = setInterval(autoPlay,10);
+    },2000);
+
+//    点击小圆点
+    for(var i = 0; i < dots.length; i++){
+        dots[i].index = i;
+        dots[i].onclick = function(){
+            clearInterval(timer1);
+            clearTimeout(timer2);
+//            点击滚动
+            num = this.index * 490;
+            imgBox.style.left = - num + "px";
+//            点击改变小圆点样式
+            for(var j = 0; j < dots.length; j++){
+                dots[j].style.backgroundColor = "rgba(101, 101, 101, 0.7)";
+            }
+            this.style.backgroundColor = "black";
+//            结束后启动自动轮播图
+            stop();
+            return  num;
+        }
+    }
+//    左右切换
+
+//    移进轮播图窗口图片停止滚动以及左右切换按钮显示
+    box.onmouseover = function(){
+        clearInterval(timer1);
+        clearTimeout(timer2);
+        change.style.display = "block";
+        for(var i = 0; i < dots.length; i++){
+            dots[i].index = i;
+            dots[i].onclick = function(){
+                clearInterval(timer1);
+                clearTimeout(timer2);
+                num = this.index * 490;
+                imgBox.style.left = - num + "px";
+                for(var j = 0; j < dots.length; j++){
+                    dots[j].style.backgroundColor = "rgba(101, 101, 101, 0.7)";
+                }
+                this.style.backgroundColor = "black";
+                return  num;
+            }
+        }
+    }
+ //    移出轮播图窗口图片继续滚动以及左右切换按钮隐藏
+    box.onmouseout = function(){
+        stop();
+        change.style.display = "none";
+    }
+
+//    左边切换控制
+left.onclick = function(){
+    if(num % 490 == 0 || num == 0) {
+        clearInterval(timer1);
+        clearTimeout(timer2);
+        if (num == 0) {
+            num = 1960;
+        } else {
+
+            num = num - 490;
+        }
+        imgBox.style.left = -num + "px";
+        stop();
+    }
+        return num;
+}
+right.onclick = function(){
+    if(num % 490 == 0 || num == 0) {
+        clearInterval(timer1);
+        clearTimeout(timer2);
+        if (num == 2450) {
+            num = 490;
+        } else {
+
+            num = num + 490;
+        }
+
+        imgBox.style.left = -num + "px";
+        stop();
+    }
+        return num;
+    }
+</script>
+</body>
+</html>

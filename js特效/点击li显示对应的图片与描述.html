@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box{
+            width: 300px;
+            height: 300px;
+            margin-left: 100px;
+        }
+        li{
+            list-style: none;
+
+        }
+        a{
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            margin-bottom: 5px;
+            display: block;
+            text-decoration: none;
+            color: #aaaaaa;
+        }
+        #img{
+            width: 200px;
+            height: 200px;
+        }
+        p{
+            margin-top: 10px;
+            height: 10px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul>
+        <li><a href="images/libai.jpg" title="这是李白的图片">李白</a></li>
+        <li><a href="images/dufu.jpg" title="这是杜甫的图片">杜甫</a></li>
+        <li><a href="images/liqingzhao.jpg" title="这是李清照的图片">李清照</a></li>
+        <li><a href="images/menghaoran.jpg" title="这是孟浩然的图片">孟浩然</a></li>
+    </ul>
+    <img src="images/dufu.jpg" alt="" id="img"/>
+</div>
+<script>
+    var box = document.getElementsByClassName("box")[0];
+    var lis = document.getElementsByTagName("a");
+    var img = document.getElementById("img");
+    var p = null;
+    for(var i = 0; i < lis.length;i++){
+        lis[i].index = i;
+        lis[i].onclick = function(){
+            img.src = this.href;
+            p = document.getElementsByTagName("p");
+            if(p.length > 0){
+                p[0].innerHTML = this.title;
+            }else{
+                p = document.createElement("p");
+                var text = document.createTextNode(this.title);
+                p.appendChild(text);
+                box.appendChild(p);
+            }
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

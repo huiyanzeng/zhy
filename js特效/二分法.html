@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var arr = [3,12,5,4,78,45,37,68,100,2,34];
+    var arr1 = arr.sort(function(a,b){
+        return a - b;
+    });
+    function look(num,arr,left,right){
+            var cen = Math.ceil((left + right) / 2);
+            var cent = arr[cen];
+//            console.log(cent);
+            if(num < cent){
+                look(num,arr,left,cen-1);
+            }else if(num > cent){
+                look(num,arr,cen+1,right);
+            }else if(num == cent){
+                console.log(cen);
+            }else{
+                document.write("找不到");
+            }
+    }
+//    console.log(arr1);
+    look(68,arr1,0,arr1.length-1);
+</script>
+
+</body>
+</html>

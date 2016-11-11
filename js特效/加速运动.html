@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 600px;
+            position: relative;
+            left: 0;
+            top: 0;
+            border: 1px solid black;
+        }
+        .btn{
+            width: 100px;
+            height: 40px;
+            display: block;
+            margin-top: 10px;
+
+        }
+        #btn1{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #btn2{
+            position: absolute;
+            top: 100px;
+            left: 0;
+        }
+        #btn3{
+            position: absolute;
+            top: 200px;
+            left: 0;
+        }
+        /*#btn4{*/
+            /*position: absolute;*/
+            /*top: 300px;*/
+            /*left: 0;*/
+        /*}*/
+        img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height:100px;
+        }
+    </style>
+</head>
+<body>
+<button id="btn1" class="btn">匀速运动</button>
+<button id="btn2" class="btn">加速运动</button>
+<button id="btn3" class="btn">减速运动</button>
+<!--<button id="btn4" class="btn">环绕</button>-->
+<img src="images/horse.gif" alt="" id="img"/>
+<script>
+    var btn1 = document.getElementById("btn1");
+    var btn2 = document.getElementById("btn2");
+    var btn3 = document.getElementById("btn3");
+    var btn4 = document.getElementById("img");
+    var target  = 1000;
+    var num = 0;
+//    匀速运动
+    btn1.onclick = function(){
+
+        var timer = setInterval(function(){
+           num = num + 10;
+          btn1.style.left = num + "px";
+            if(num > 1000){
+                clearInterval(timer);
+            }
+       },10);
+
+    }
+//    加速运动
+    btn2.onclick = function(){
+        var n = 0,add= 1;
+        var timer1 = setInterval(function(){
+            n = n + 10 + add ;
+            add++;
+            btn2.style.left = n + "px";
+            if(n > 1000){
+                clearInterval(timer1);
+            }
+        },10);
+
+    }
+//    减速运动
+    btn3.onclick = function(){
+        var sub = 0;
+        var timer2 = setInterval(function(){
+            sub = sub + (target - sub) / 10 ;
+            btn3.style.left = sub + "px";
+            if(sub > 1000){
+                clearInterval(timer2);
+            }
+        },10);
+    }
+//    环绕运动
+    btn4.onclick = function(){
+       var y = window.document.body.offsetHeight;
+       var x = window.document.body.offsetWidth;
+        console.log(x + " /" + y);
+        var btn_y = 0,btn_x = 0;
+        var timer3 = setInterval(function(){
+            btn_y++;
+            btn4.style.top = btn_y + "px";
+            if(btn_y > (y-100)){
+                clearInterval(timer3);
+                var timer4 = setInterval(function(){
+                    btn_x++;
+                    btn4.style.left = btn_x + "px";
+                    if(btn_x > (x-100)){
+                        clearInterval(timer4);
+                        var timer5 = setInterval(function(){
+                            btn_y--;
+                            btn4.style.top = btn_y + "px";
+                            if(btn_y < 0){
+                                clearInterval(timer5);
+                                var timer6  = setInterval(function(){
+                                    btn_x--;
+                                    btn4.style.left = btn_x + "px";
+                                    if(btn_x < 0){
+                                        clearInterval(timer6);
+                                    }
+                                },10)
+                            }
+                        },10)
+                    }
+                },10)
+            }
+        },10)
+    }
+</script>
+</body>
+</html>
