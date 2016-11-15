@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>svg运动</title>
+</head>
+<body>
+<!-- viewbox 可视区域 会把这个区域放大 而其他区域不可见 -->
+<!--<svg width="500px" height="500px" viewBox="100 100 100 100">-->
+    <svg width="500px" height="500px" >
+
+    <rect id="rect" width="100" height="100" fill="pink"></rect>
+
+</svg>
+
+<script>
+    var rect = document.getElementById('rect');
+    var x = 0;
+    setInterval(function () {
+//        因为这个rect是DOM标签 不能用下面这种方式 没有任何效果
+//        rect.x += 5;
+
+        x += 5;
+//        通过这种方式设置属性
+//        rect.setAttribute('x',x);
+
+        rect.setAttribute('x',Math.random() * 400);
+        rect.setAttribute('y',Math.random() * 400);
+
+//        rect.setAttribute('width',Math.random() * 400);
+//        rect.setAttribute('height',Math.random() * 400);
+
+        rect.setAttribute('width',Math.min(Math.max(100,Math.random() * 400),200));
+        rect.setAttribute('height',Math.min(Math.max(100,Math.random() * 400),200));
+
+    },1000)
+</script>
+
+</body>
+</html>

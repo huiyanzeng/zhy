@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas画布基础</title>
+</head>
+<body>
+
+<!-- 添加canvas标签 -->
+<canvas id="canvas" width="500px" height="500px" ></canvas>
+
+<input type="button" value="重新加载" onclick="reloadCanvas()">
+
+<script>
+    var canvas = document.getElementById('canvas');
+
+    var x = 100;
+    var y = 100;
+//    var r = 10;
+
+    var cx = 0;
+    var cy = 0;
+
+    var context = canvas.getContext('2d');
+    function reloadCanvas() {
+        context.clearRect(0,0,500,500);
+
+        context.beginPath();
+        context.fillStyle = 'blue';
+        context.arc(100 * Math.sin(-x * Math.PI/60) + cx,100 * Math.cos(-y * Math.PI/60) + cy,10,0,Math.PI * 2);
+        context.fill();
+        context.closePath();
+
+        context.beginPath();
+        context.arc(cx,cy,50,0,2*Math.PI);
+        context.fillStyle = 'red';
+        context.fill();
+        context.closePath();
+    }
+
+    setInterval(function () {
+        x++;
+        y++;
+
+        if(cx > 300)
+        {
+            cx = 0;
+            cy = 0;
+        }else{
+            cx++;
+            cy++;
+        }
+
+        reloadCanvas();
+    },100);
+
+
+</script>
+
+</body>
+</html>

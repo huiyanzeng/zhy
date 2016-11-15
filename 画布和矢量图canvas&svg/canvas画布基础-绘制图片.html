@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas画布基础</title>
+</head>
+<body>
+
+<!-- 添加canvas标签 -->
+<canvas id="canvas" width="500px" height="300px" style="background-color: aqua"></canvas>
+
+<input type="button" value="重新加载" onclick="reloadCanvas()">
+
+<script>
+    var canvas = document.getElementById('canvas');
+//    console.log(canvas);
+////    重点:canvas标签是不能绘画的 必须要取到其属性 context 上下文 可以理解为画纸
+//    var context = canvas.getContext('2d');
+//    console.log(context);
+//
+////    绘制图片 9个参数
+////    第一个 为图片对象
+////    第二到第五 为x,y,w,h 坐标和宽高 从原图截取的图片的位置和宽高
+////    如果设置了第三组(6-9) x,y,w,h 为图片添加到画布的位置和宽高
+//
+//    var image = new Image();
+//    image.src = 'pika.gif';
+//
+//    context.drawImage(image,100,100,112,118);
+//
+////    给图片添加load 在load事件当中绘制
+//    image.onload = function () {
+////        因为绘制操作是一次完成 所以这不会是一个动图效果
+//        context.drawImage(image,100,100,112,118);
+//    }
+
+    function reloadCanvas() {
+
+        var context = canvas.getContext('2d');
+        console.log(context);
+
+        var image = new Image();
+        image.src = 'pika.gif';
+
+//        context.drawImage(image,100,100,112,118);
+
+        context.drawImage(image,30,30,50,50,100,100,112,128);
+    }
+
+</script>
+
+<img src="pika.gif" alt="">
+
+</body>
+</html>

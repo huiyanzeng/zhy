@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas画布基础</title>
+</head>
+<body>
+
+<!-- 添加canvas标签 -->
+<canvas id="canvas" width="500px" height="300px" ></canvas>
+
+<input type="button" value="重新加载" onclick="reloadCanvas()">
+
+<script>
+    var canvas = document.getElementById('canvas');
+
+    function reloadCanvas() {
+
+        var context = canvas.getContext('2d');
+        console.log(context);
+////      这一步只是描述 需要绘制的路径
+//        context.rect(100,100,200,200);
+////      这三个操作表示 接下来的界面显示操作
+//        context.fill();
+////        context.stroke();
+////        var result = context.clip();
+////        console.log(result);
+
+//        所有的路径都是靠点操作的
+//        移动到起始点
+//        context.moveTo(100,100);
+//        context.lineTo(200,200);
+//        context.lineTo(100,200);
+////        context.lineTo(100,100);
+//        context.strokeStyle = 'red';
+//        context.lineWidth = 10;
+//        context.stroke();
+//        context.fill();
+
+//        六个参数 这是画圆弧 起始位置(圆心) 半径 起始角度(以π为单位的) 终止角度 顺时针还是逆时针
+//        context.beginPath();
+//        context.arc(400,100,100,0,Math.PI/2,true);
+//        context.stroke();
+//        context.fill();
+//        context.closePath();
+
+//        权当了解 因为我不会算 贝塞尔曲线
+//          context.bezierCurveTo(62.5, 37.5,185.5, 70.5,32.5, 70.5);
+//          context.stroke();
+
+//        arcto
+//        context.moveTo(100,100);
+//        context.arcTo(0,100,300,300,300);
+//        context.stroke();
+
+
+    }
+
+</script>
+
+</body>
+</html>

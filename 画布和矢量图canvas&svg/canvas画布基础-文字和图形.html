@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas画布基础</title>
+</head>
+<body>
+
+<!-- 添加canvas标签 -->
+<canvas id="canvas" width="500px" height="300px" ></canvas>
+
+<input type="button" value="重新加载" onclick="reloadCanvas()">
+
+<script>
+    var canvas = document.getElementById('canvas');
+
+    function reloadCanvas() {
+
+        var context = canvas.getContext('2d');
+        console.log(context);
+
+//        canvas对于文字的绘制及其不完美 十分模糊 和马赛克没什么区别
+//        对于filltext的maxwidth参数 如果文字的长度超过了max 就会往里挤压
+
+//        var text = "皮卡丘皮卡丘皮卡丘皮卡丘皮卡丘皮卡丘皮卡丘皮卡丘皮卡丘皮卡丘皮卡丘皮卡丘";
+//        context.fillText(text,100,100,100);
+
+        var text = "皮卡丘";
+        context.font = "30px Wawati SC";
+//        context.fillStyle = 'yellow';
+//        这条属性是用在线上的
+        context.strokeStyle = 'black';
+        context.lineWidth = 2;
+//        context.fillText(text,100,100);
+        context.strokeText(text,100,100);
+
+//        填充图形 矩形
+        context.fillRect(0,0,100,100);
+
+//      清空矩形区域
+        context.clearRect(0,0,100,100);
+
+//        setTimeout("context.clearRect(0,0,100,100)",1000);
+
+        context.strokeRect(100,50,100,100);
+    }
+
+</script>
+
+</body>
+</html>

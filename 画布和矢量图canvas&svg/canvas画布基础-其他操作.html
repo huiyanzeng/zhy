@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas画布基础</title>
+</head>
+<body>
+
+<!-- 添加canvas标签 -->
+<canvas tabindex="-1" id="canvas" width="500px" height="500px" style="background-color: aqua" ></canvas>
+
+<input type="button" value="重新加载" onclick="reloadCanvas()">
+
+<script>
+    var canvas = document.getElementById('canvas');
+
+    function reloadCanvas() {
+        var context = canvas.getContext('2d');
+
+        console.log(context);
+
+        context.fillRect(100,100,100,100);
+//  context不能响应点击事件
+//    context.onclick = function () {
+        //        alert("点击");
+        //    }
+
+//        添加点击和键盘事件(记得要让canvas聚焦)
+        canvas.onclick = function () {
+            alert("点击");
+        };
+
+        canvas.onkeydown = function (e) {
+            console.log(e);
+        }
+
+//        缩放方法
+//        context.scale(1.5,1.5);
+//        旋转
+//        context.rotate(Math.PI / 40);
+//        位移
+//        context.translate(-10,50);
+
+    }
+    
+</script>
+
+</body>
+</html>
