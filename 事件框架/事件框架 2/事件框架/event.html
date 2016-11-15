@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>event</title>
+</head>
+<body>
+
+<p id="ppp">这是一个p</p>
+
+<script src="myEvent.js"></script>
+
+<script>
+//    $$.on("ppp","click",func = function () {
+//        alert("这是点击");
+//    });
+//
+//    setTimeout(function () {
+//        $$.un("ppp","click",func);
+//    },5000);
+//
+//    $$.click("ppp",function () {
+//        console.log("这是单击");
+//    });
+//
+//    $$.dblClick("ppp",function () {
+//        console.log("双击");
+//    });
+//
+//    $$.triClick("ppp",function () {
+//        console.log("三击");
+//    })
+//  重要的笔试题
+    //var t1,t2,count = 0;
+    var t1 = t2 = t3 = 0;
+    var count = 0;
+
+    var ppp = $$.$id("ppp");
+
+//    ppp.onclick = function () {
+//        console.log("click");
+//    };
+//    ppp.onmousedown = function (e) {
+////        console.log(e.timeStamp);
+//
+//        if(t1 == 0)
+//        {
+//            t1 = e.timeStamp;
+//        }
+//        console.log(t1);
+////        console.log("down");
+//        setTimeout(function () {
+//            t1 = t2 = count = 0;
+//        },1000);
+//    };
+//    ppp.onmouseup = function (e) {
+////        console.log("up");
+////        console.log(e.timeStamp);
+//        t2 = e.timeStamp;
+//        console.log("time" + t2);
+//        count++;
+//
+//        if(count == 3 && (t2-t1) < 1000)
+//        {
+//            console.log("三击");
+//            count = 0;
+//            t1 = 0;
+//        }
+//        谢的版本
+//        if(count == 2 && (t2 - t1) > 1000)
+//        {
+//            t1 = 0;
+//            count = 1;
+//        }
+//        if(count == 3)
+//        {
+//            count = 0;
+//            if((t2 - t1) < 1000)
+//            {
+//                console.log("三击");
+//            }
+//            t1 = 0;
+//        }
+//        陈版本
+//        if(count == 4 && (t2-t1) < 1000)
+//        {
+//            console.log("三击");
+//            count = 1;
+//            t1 = 0;
+//        }
+//
+//        if((t2 - t1) > 1000)
+//        {
+//            count = 1;
+//        }
+//        刘的版本
+//    };
+//    ppp.ondblclick = function () {
+//        console.log("dbl");
+//    }
+//    封装一个函数 用于处理1,2,3,4,5次击
+
+//  单击 只要有up就触发
+//  双击 1秒钟内 调用两个up和down 就触发
+//  三击 1秒钟内 调用三个up和down 就触发
+//  四击 1秒钟内 调用四个up和down 就触发
+//  五击 1秒钟内 调用五个up和down 就触发
+
+function nClick(n) {
+//    单击
+//    switch(n)
+//    {
+//        case 1:
+//            this.onmouseup = function () {
+//                console.log("单击");
+//            };
+//            break;
+//        case 2:
+            this.onmousedown = function (e) {
+
+                if(t1 == 0)
+                {
+                    t1 = e.timeStamp;
+                }
+                t3 = e.timeStamp;
+
+                if((t3 - t1) > 1000)
+                {
+                    t1 = t3;
+                    count = 0;
+                }
+            };
+            this.onmouseup = function (e) {
+                t2 = e.timeStamp;
+                if(count == n && (t2 - t1) < 1000)
+                {
+                    console.log(n + "击");
+                    count = 0;
+                    t1 = 0;
+                }
+
+                count++;
+            };
+//            break;
+//    }
+}
+
+    ppp.constructor.prototype.nClick = nClick;
+    ppp.nClick(10);
+
+</script>
+
+</body>
+</html>

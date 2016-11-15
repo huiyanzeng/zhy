@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件框架</title>
+
+    <script src="myEvent.js"></script>
+    <!-- 在导入扩展框架之前必须导入源框架 -->
+    <script src="extendEvent.js"></script>
+    <script src="another.js"></script>
+    <script src="link.js"></script>
+
+    <style>
+        #box{
+            width:100px;
+            height:100px;
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 1、分模块
+     2、按模块编程
+     3、实验
+ -->
+
+<div id="box">
+    <p>这是一个p</p>
+    <p>这是一个p1</p>
+    <p>这是一个p2</p>
+    <p>这是一个p3</p>
+    <div>
+        <p></p>
+    </div>
+</div>
+
+<p>这是外面的p</p>
+
+<script>
+    //首先得创建对象
+//    var ob = new $$();
+
+    var box = $$.$id("box");//???
+//    var box = ob.$id("box");
+    console.log(box);
+
+//    div>p
+//    $$.$any("div>p")
+
+    var str = "div>p";
+
+    var regex = /\w+/g;
+
+    console.log(str.match(regex));
+
+//    var father = "div"
+//    var child = "p";
+
+    console.log($$.$tab("div p"));
+
+    $$.click();
+
+    $$.$extend($$,newObj);
+
+    $$.eat();
+
+    $$.on("box","click",function () {
+        alert("box被点击了");
+    });
+
+    $$.on($$.$id("box"),"click",function () {
+        alert("box被点击了");
+    });
+
+    $$.on(box,"click",function () {
+        alert("box被点击了");
+    });
+</script>
+
+</body>
+</html>

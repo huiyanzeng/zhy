@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查询</title>
+
+    <style>
+        div{
+            width:300px;
+            height: 800px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<script src="myEvent.js"></script>
+
+<div>
+    <p class="ppp">1<span></span><span></span><span></span></p>
+    <p class="ppp">2<span></span><span></span><span></span></p>
+    <p class="ppp">3<span></span><span></span><span></span></p>
+    <p class="ppp">4<span></span><span></span><span></span></p>
+    <p class="ppp">5<span></span><span></span><span></span></p>
+</div>
+<div id="box">
+    dddd
+    <p class="ppp">6<span></span><span></span><span></span></p>
+    <p class="ppp">7<span></span><span></span><span></span></p>
+    <p class="ppp"><span></span><span></span><span></span></p>
+    <p class="ppp"><span></span><span></span><span></span></p>
+    <p class="ppp"><span></span><span></span><span></span></p>
+</div>
+
+<script>
+    var result = $$.$group("#box,.ppp,span");
+    console.log(result.length);
+
+//     for(var i = 0;i < result.length;i++)
+//     {
+//         var a = document.createTextNode(result[i].tagName.toLowerCase() + i + " ");
+// //        a.innerHTML = ;
+//         result[i].appendChild(a);
+//         console.log(result[i]);
+//     }
+
+//    console.log(result);
+//
+//    var emptyArray = [];
+//    var newArray = [1,2,3];
+//    var newArray1 = [4,5,6];
+//    var newArray2 = [7,8,9];
+//
+//    function appendArray(disArray,srcArray) {
+//        for(var i = 0;i < srcArray.length;i++)
+//        {
+//            disArray.push(srcArray[i]);
+//        }
+//    }
+//
+////    test(emptyArray,newArray);
+//    //    test(emptyArray,newArray1);
+//    //    test(emptyArray,newArray2);
+//
+//    console.log(emptyArray);
+////    $$.$id("#pid");
+////    console.log($$.$tag("span"));
+////    console.log("span,".replace(",",""));
+////
+////    console.log(".span".match(/\./));
+//
+//    var str = "  sss bb ass dd  \n ddd dddd  ";
+//    var res = $$.lrtrim(str);
+//    console.log(res + "test");
+//
+//    console.log($$.$("span"));
+
+//  进行多标签的事件绑定
+//   1、取得多标签 2、能够给单个标签绑定事件
+//   1 + 2
+
+    $$.onMany("#box","click",function (e) {
+            alert("啊啊啊啊");
+        })
+
+</script>
+
+</body>
+</html>

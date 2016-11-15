@@ -1,0 +1,115 @@
+/**
+ * Created by wenyuan on 16/10/18.
+ * copyRight @george
+ * 正版保证,盗版必究
+ */
+
+//数据查询模块
+//事件操作模块
+//补充模块
+
+var $$ = function () {};
+
+$$.prototype = {
+//    数据查询方式
+//    以id查询的封装
+    $id:function (idStr) {
+        return document.getElementById(idStr);
+    },
+    $class:function (classStr) {
+        return document.getElementsByClassName(classStr);
+    },
+    $tag:function (tagStr) {
+        return document.getElementsByTagName(tagStr);
+    },
+    //子节点查询
+    $tab:function (tabStr) {
+        var array = tabStr.match(/\w+/g);
+        var father = this.$tag(array[0]);
+        var result = [];
+        var child = this.$tag(array[1]);
+        for(var index = 0;index < child.length;index++)
+        {
+            if( child[index].parentNode == father[0])
+            {
+                result.push(child[index]);
+            }
+        }
+        return result;
+    },
+    //  框架扩展方法
+    $extend:function (dis,src) {
+        for(var attr in src)
+        {
+            dis[attr] = src[attr];
+        }
+
+        return dis;
+    },
+
+    // 类型判断模块
+    $isString:function (str) {
+        return typeof str === "string";
+    },
+    $isNumber:function (num) {
+        return typeof num === "number" && isFinite(num);
+    }
+    //... 布尔值 array数组 函数 
+};
+
+//  DOM当中如何知道一个节点是标签??? type = 1
+
+// div > p > span
+//
+// //  div head
+//
+// head.children type = 1
+// head.children.children
+//
+// function searchhoudai(head,houdai) {
+//     return true;
+//     return false;
+// }
+//
+// // div > ul??
+
+var $$ = new $$();
+// 一个框架其延展性一定要好
+//如果未来需要对这个对象进行扩充,怎么想
+
+// 为原对象添加事件扩充方法 
+$$.$extend($$,{
+
+    // 事件绑定
+    
+        on:function (id,type,func) {
+            //id 可能是真正的对象 也可能是字符串
+            //type是事件类型
+            // func 事件的响应
+
+            // 判断id的类型 找到真正需要添加事件的对象
+
+            // var result = typeof id === "string";
+            //
+            // var dom = result?this.$id(id):id;
+
+            var dom = this.$isString(id)?this.$id(id):id;
+
+            // 添加事件绑定(其实是原生js当中的事件监听)
+            // 记住这里的判断 在以后会经常用 
+            if(dom.addEventListener){
+                dom.addEventListener(type,func);
+            }
+            // 兼容IE
+            if(dom.attachEvent)
+            {
+                dom.attachEvent('on' + type,func);
+            }
+            
+        }
+    
+    // 事件解绑
+    
+    // 特征事件的封装 单击 双击 三击 四击 。。。拖拽 
+    
+});
